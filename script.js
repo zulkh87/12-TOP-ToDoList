@@ -1,6 +1,7 @@
 const listsContainer = document.querySelector("[data-lists]");
 const newListForm = document.querySelector("[data-new-list-form]");
 const newListInput = document.querySelector("[data-new-list-input]");
+const deleteListButton = document.querySelector("[data-delete-list-button]");
 
 // "tasks.list" is a namespace. Prevents you from overriding information that's already in the local storage || prevents from other websites overriding your local storage keys.
 const LOCAL_STORAGE_LIST_KEY = "tasks.lists";
@@ -13,6 +14,12 @@ listsContainer.addEventListener("click", (e) => {
     selectedListId = e.target.dataset.listId;
     saveAndRender();
   }
+});
+
+deleteListButton.addEventListener("click", (e) => {
+  lists = lists.filter((list) => list.id !== selectedListId);
+  selectedListId = null;
+  saveAndRender();
 });
 
 newListForm.addEventListener("submit", (e) => {
